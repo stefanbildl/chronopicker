@@ -1,0 +1,21 @@
+<mat-form-field>
+  <mat-label>Input with form control</mat-label>
+  <input [formControl]="formControl" matInput [chronopicker]="cp" type="time">
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Input without form control</mat-label>
+  <input matInput [chronopicker]="cp" type="text">
+</mat-form-field>
+
+<div style="display: flex; gap: 8px;">
+  <mat-label>Input without matInput and formControl</mat-label>
+  <input [chronopicker]="cp" type="text">
+</div>
+
+<div style="display: flex; gap: 8px">
+  <mat-label>Input with ngModel</mat-label>
+  <input [(ngModel)]="model" [chronopicker]="cp" type="text">
+</div>
+
+<chronopicker #cp></chronopicker>

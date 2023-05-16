@@ -1,0 +1,24 @@
+<ng-template>
+  <div class="panel" >
+    <div style="display: inline-flex; flex-direction: column; gap: 4px;">
+      <button mat-button (click)="increment(hourControl)"> +1 </button>
+      <mat-form-field style="width: 70px">
+        <mat-label>HH</mat-label>
+        <input matInput type="text" [formControl]="hourControl" (blur)="onBlur($event, hourControl)">
+        <mat-hint>Hour</mat-hint>
+      </mat-form-field>
+      <button mat-button (click)="decrement(hourControl)"> -1 </button>
+    </div>
+    <span> : </span>
+
+    <div style="display: inline-flex; flex-direction: column; gap: 4px;">
+      <button mat-button (click)="increment(minuteControl)"> +1 </button>
+      <mat-form-field style="width: 70px">
+        <mat-label>MM</mat-label>
+        <input matInput type="text" [formControl]="minuteControl" (blur)="onBlur($event, minuteControl)">
+        <mat-hint>Minute</mat-hint>
+      </mat-form-field>
+      <button mat-button (click)="decrement(minuteControl)"> -1 </button>
+    </div>
+  </div>
+</ng-template>
