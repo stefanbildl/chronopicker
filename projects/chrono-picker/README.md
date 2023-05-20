@@ -1,24 +1,69 @@
-# ChronoPicker
+# Chrono-picker
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+A Timepicker component compatible with Angular 16.
+It works in combination with Angular reactive forms and ngModel.
 
-## Code scaffolding
 
-Run `ng generate component component-name --project chrono-picker` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project chrono-picker`.
-> Note: Don't forget to add `--project chrono-picker` or else it will be added to the default project in your `angular.json` file. 
+## Installation
+
+```sh
+npm install --save chrono-picker@0.0.2
+```
+
+## How to
+
+1. Import the ChronoPickerModule in the module you want to use the time picker.
+2. Create a chronopicker element. and attach it to an input element.
+
+
+### Import Module
+```typescript
+// ...
+import { ChronoPickerModule } from 'chrono-picker';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    ReactiveFormsModule,
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+    // Import the module here
+    ChronoPickerModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+### Example with Angular Reactive Forms and a formControl.
+
+```typescript
+<mat-form-field>
+  <mat-label>Input with form control</mat-label>
+  <input [formControl]="formControl" matInput [chronopicker]="cp" type="time">
+</mat-form-field>
+
+<chronopicker #cp/>
+```
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
 
 ## Build
 
-Run `ng build chrono-picker` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Publishing
 
-After building your library with `ng build chrono-picker`, go to the dist folder `cd dist/chrono-picker` and run `npm publish`.
+## Contributing
 
-## Running unit tests
+If you want to contribute to the project, please feel free to create pull requests or issues. Thank you!
 
-Run `ng test chrono-picker` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
