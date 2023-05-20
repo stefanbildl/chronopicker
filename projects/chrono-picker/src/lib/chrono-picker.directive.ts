@@ -51,7 +51,7 @@ export class ChronoPickerDirective implements OnInit {
     return this._formField;
   }
 
-  /** Whether or not the autocomplete panel is open. */
+  /** Whether or not the chronopicker panel is open. */
   get panelOpen(): boolean {
     return this._overlayAttached;
   }
@@ -139,18 +139,11 @@ export class ChronoPickerDirective implements OnInit {
 
   /** Handles keyboard events coming from the overlay panel. */
   private _handleOverlayEvents(overlayRef: OverlayRef) {
-    // Use the `keydownEvents` in order to take advantage of
-    // the overlay event targeting provided by the CDK overlay.
     overlayRef.keydownEvents().subscribe((event) => {
-      // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
-      // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
       if (
         (event.keyCode === ESCAPE && !hasModifierKey(event)) ||
         (event.keyCode === UP_ARROW && hasModifierKey(event, 'altKey'))
       ) {
-        // If the user had typed something in before we autoselected an option, and they decided
-        // to cancel the selection, restore the input value to the one they had typed in.
-
         // We need to stop propagation, otherwise the event will eventually
         // reach the input itself and cause the overlay to be reopened.
         event.stopPropagation();
@@ -159,8 +152,6 @@ export class ChronoPickerDirective implements OnInit {
     });
 
     // Subscribe to the pointer events stream so that it doesn't get picked up by other overlays.
-    // TODO(crisbeto): we should switch `_getOutsideClickStream` eventually to use this stream,
-    // but the behvior isn't exactly the same and it ends up breaking some internal tests.
     overlayRef.outsidePointerEvents().subscribe();
   }
 
@@ -233,7 +224,7 @@ export class ChronoPickerDirective implements OnInit {
     this._attachOverlay();
   }
 
-  /** Stream of clicks outside of the autocomplete panel. */
+  /** Stream of clicks outside of the panel. */
   private _getOutsideClickStream(): Observable<UIEvent> {
     return merge(
       fromEvent(this._document, 'click') as Observable<MouseEvent>,
